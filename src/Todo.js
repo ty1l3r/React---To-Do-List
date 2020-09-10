@@ -25,6 +25,14 @@ class Todo extends Component {
         })
     }
 
+    deletItem = (index) => {
+        const arr = this.state.items;
+        arr.splice(index, 1);
+        this.setState({
+            items: arr
+        })
+    }
+
     renderTodo = () => {
         return this.state.items.map((item, index) => {
             return (
@@ -32,8 +40,10 @@ class Todo extends Component {
                 <div className='card mb-3' key={index}>
                     <div className='card-title ml-3 mt-3'>
                         <h4> {item.element}
-                            <i className='fas fa-times'
-                               style={{cursor: 'pointer', color: 'red', float: 'right'}}>
+                            <i className='fas fa-times mr-3'
+                               style={{cursor: 'pointer', color: 'red', float: 'right'}}
+                                onClick={ () => this.deletItem(index)}
+                            >
                             </i>
                         </h4>
                     </div>
