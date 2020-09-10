@@ -4,6 +4,7 @@ class Todo extends Component {
 
     state = {
         element: '',
+        titre: '',
         items: []
     }
 
@@ -19,8 +20,9 @@ class Todo extends Component {
         e.preventDefault();
         /* spread operator*/
         this.setState({
+            titre: '',
             element: '',
-            items: [...this.state.items, {element: this.state.element}],
+            items: [...this.state.items, {titre: this.state.titre}, {element: this.state.element}],
 
         })
     }
@@ -30,12 +32,15 @@ class Todo extends Component {
             return (
 
                 <div className='card mb-3' key={index}>
-                    <div className='card-title ml-3 mt-3'>
-                        <h4> {item.element}
-                            <i className='fas fa-times'
+                    <div className='card-title'>
+                        <h4>{item.titre}
+                            <i className="fas fa-times"
                                style={{cursor: 'pointer', color: 'red', float: 'right'}}>
                             </i>
                         </h4>
+                        <p className='card-text'>
+                             {item.element}
+                        </p>
                     </div>
                 </div>
             )
@@ -56,6 +61,14 @@ class Todo extends Component {
                                 <input type="text"
                                        className='form-control form-control-lg'
                                        style={{width: '500px'}}
+                                       name="titre"
+                                       onChange={this.onChange}
+                                       value={this.state.titre}
+                                />
+                                <label htmlFor="element"> element </label>
+                                <input type="text"
+                                       className='form-control form-control-lg'
+                                       style={{height: '150px'}}
                                        name="element"
                                        onChange={this.onChange}
                                        value={this.state.element}
